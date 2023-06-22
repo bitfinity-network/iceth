@@ -56,10 +56,9 @@ const INITIAL_SERVICE_HOSTS_ALLOWLIST: &[&str] = &[
     "api.mycryptoapi.com",
     "mainnet.eth.cloud.ava.dono",
     "eth-mainnet.gateway.pokt.network",
-    
     // Bitfinity additional hosts:
-    "ethereum-goerli.publicnode.com",   // Ethereum testnet
-    "testnet.bitfinity.network",        // Bitfinity testnet
+    "ethereum-goerli.publicnode.com", // Ethereum testnet
+    "testnet.bitfinity.network",      // Bitfinity testnet
 ];
 
 // Static permissions. The canister creator is also authorized for all permissions.
