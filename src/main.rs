@@ -1,5 +1,5 @@
 use candid::{candid_method, CandidType, Decode, Deserialize, Encode, Principal};
-use ic_canister_log::{declare_log_buffer, log};
+use ic_canister_log::declare_log_buffer;
 use ic_canister_serve::{serve_logs, serve_metrics};
 use ic_cdk::api::management_canister::http_request::{
     http_request as make_http_request, CanisterHttpRequestArgument, HttpHeader, HttpMethod,
@@ -84,6 +84,7 @@ type Memory = VirtualMemory<DefaultMemoryImpl>;
 declare_log_buffer!(name = INFO, capacity = 1000);
 declare_log_buffer!(name = ERROR, capacity = 1000);
 
+#[allow(dead_code)]
 #[derive(Default)]
 struct Metrics {
     json_rpc_requests: u64,
@@ -221,6 +222,7 @@ thread_local! {
         StableBTreeMap::init(MEMORY_MANAGER.with(|m| m.borrow().get(MemoryId::new(2)))));
 }
 
+#[allow(dead_code)]
 #[derive(CandidType, Debug)]
 enum EthRpcError {
     NoPermission,
@@ -316,11 +318,11 @@ async fn json_rpc_request_internal(
         .host_str()
         .ok_or(EthRpcError::ServiceUrlHostMissing)?
         .to_string();
-    if SERVICE_HOSTS_ALLOWLIST.with(|a| !a.borrow().contains(&host.as_str())) {
-        log!(INFO, "host not allowed {}", host);
-        inc_metric!(json_rpc_request_err_service_url_host_not_allowed);
-        return Err(EthRpcError::ServiceUrlHostNotAllowed);
-    }
+    // if SERVICE_HOSTS_ALLOWLIST.with(|a| !a.borrow().contains(&host.as_str())) {
+    //     log!(INFO, "host not allowed {}", host);
+    //     inc_metric!(json_rpc_request_err_service_url_host_not_allowed);
+    //     return Err(EthRpcError::ServiceUrlHostNotAllowed);
+    // }
     if !authorized(Auth::FreeRpc) {
         let provider_cost = match &provider {
             None => 0,
