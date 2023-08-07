@@ -55,9 +55,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@master
 
-      - name: Update rustc
-        run: rustup toolchain install stable --profile minimal --no-self-update
-
       - uses: Swatinem/rust-cache@v2
         with:
           cache-targets:  false
@@ -66,6 +63,7 @@ jobs:
       - run: cargo install --locked cargo-deny
       - name: Cargo deny
         run: |
+          rustup toolchain install stable --profile minimal --no-self-update
           cargo-deny check --hide-inclusion-graph || true
 
   cargo-audit:
