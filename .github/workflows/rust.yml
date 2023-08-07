@@ -34,6 +34,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@master
 
+      - name: Update rustc
+        run: rustup toolchain install stable --profile minimal --no-self-update
+
       - uses: Swatinem/rust-cache@v2
         with:
           shared-key: ${{ github.repository }}-checks
