@@ -59,6 +59,7 @@ const INITIAL_SERVICE_HOSTS_ALLOWLIST: &[&str] = &[
     // Bitfinity additional hosts:
     "ethereum-goerli.publicnode.com", // Ethereum testnet
     "testnet.bitfinity.network",      // Bitfinity testnet
+    "localhost",                      // For integration tests
 ];
 
 // Static permissions. The canister creator is also authorized for all permissions.
