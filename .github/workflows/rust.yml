@@ -6,6 +6,7 @@ on:
     branches:
       - main
       - btf_main
+      - with_localhost
     tags:
       - v*
     paths-ignore:
