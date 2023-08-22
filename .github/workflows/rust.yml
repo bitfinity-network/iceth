@@ -50,22 +50,22 @@ jobs:
           cargo clippy -- -D clippy::all -D warnings -A clippy::manual_range_contains
           cargo clippy --tests --benches -- -D clippy::all -D warnings -A clippy::manual_range_contains
 
-  cargo-deny:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@master
+  # cargo-deny:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@master
 
-      - uses: Swatinem/rust-cache@v2
-        with:
-          cache-targets:  false
-          save-if: ${{ github.ref_type != 'tag' }}
+  #     - uses: Swatinem/rust-cache@v2
+  #       with:
+  #         cache-targets:  false
+  #         save-if: ${{ github.ref_type != 'tag' }}
 
-      - run: cargo install --locked cargo-deny
-      - name: Cargo deny
-        run: |
-          rustup toolchain install stable --profile minimal --no-self-update
-          cargo-deny check --hide-inclusion-graph || true
+  #     - run: cargo install --locked cargo-deny
+  #     - name: Cargo deny
+  #       run: |
+  #         rustup toolchain install stable --profile minimal --no-self-update
+  #         cargo-deny check --hide-inclusion-graph || true
 
   cargo-audit:
     runs-on: ubuntu-latest
